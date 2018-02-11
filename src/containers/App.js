@@ -3,15 +3,18 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Header from "../components/Header";
-import MainSection from "../components/MainSection";
+import Main from "../components/Main";
 import * as TicketActions from "../actions";
 
-const App = ({ tickets, actions }) => (
-  <div>
-    <Header addTicket={actions.addTicket} />
-    <MainSection tickets={tickets} actions={actions} />
-  </div>
-);
+const App = ({ tickets, actions, currentTicket }) => {
+  console.log("app props", tickets);
+  return (
+    <div>
+      <Header />
+      <Main tickets={tickets} actions={actions} />
+    </div>
+  );
+};
 
 App.propTypes = {
   tickets: PropTypes.array.isRequired,
@@ -19,7 +22,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  tickets: state.tickets
+  tickets: state.tickets.tickets,
+  currentTicket: state.tickets.currentTicket
 });
 
 const mapDispatchToProps = dispatch => ({
