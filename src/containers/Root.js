@@ -9,7 +9,10 @@ const Root = ({ store }) => {
   return (
     <Provider store={store}>
       <Router>
-        <Route path="/:menuItem?" component={App} />
+        <div>
+          <Route path="/:menuAction?" component={App} />
+          <Route path="/:menuAction/id" component={App} />
+        </div>
       </Router>
     </Provider>
   );
