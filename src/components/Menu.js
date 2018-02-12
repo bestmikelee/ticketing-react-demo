@@ -41,11 +41,11 @@ class Menu extends Component {
               color="inherit"
               className={this.props.classes.flex}
             >
-              Ticket Dashboard{" "}
-            </Typography>{" "}
-            <MenuLink menuItem={ADD_TICKET} menuState={this.props.menuState} />{" "}
-          </Toolbar>{" "}
-        </AppBar>{" "}
+              Ticket Dashboard
+            </Typography>
+            <MenuLink menuItem={ADD_TICKET} menuState={this.props.menuState} />
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }

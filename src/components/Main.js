@@ -69,17 +69,10 @@ export default class Main extends Component {
     const { filter } = this.state;
 
     const filteredTickets = tickets.filter(TICKET_FILTERS[filter]);
-<<<<<<< HEAD
-    const completedCount = tickets.reduce(
-      (count, ticket) => (ticket.completed ? count + 1 : count),
-      0
-    );
-=======
     // const completedCount = tickets.reduce(
     //   (count, ticket) => (ticket.completed ? count + 1 : count),
     //   0
     // );
->>>>>>> bf19f7a5da6882a07aee40f45f74178eb19b8ab7
     //        {this.renderFooter(completedCount)}
     //        {this.renderToggleAll(completedCount)}
 
