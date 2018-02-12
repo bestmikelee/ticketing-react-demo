@@ -5,10 +5,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "material-ui": "^1.0.0-beta.33",
-<<<<<<< HEAD
-=======
     "material-ui-icons": "^1.0.0-beta.17",
->>>>>>> bf19f7a5da6882a07aee40f45f74178eb19b8ab7
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
