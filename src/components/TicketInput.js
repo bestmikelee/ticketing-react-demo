@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 
 export default class TicketInput extends Component {
-  static propTypes = {
+  propTypes = {
     onSave: PropTypes.func.isRequired,
     body: PropTypes.string,
     subject: PropTypes.string,
@@ -13,7 +13,6 @@ export default class TicketInput extends Component {
     newTicket: PropTypes.bool,
     submitted: PropTypes.number
   };
-
   state = {
     body: this.props.body || "",
     subject: this.props.subject || ""

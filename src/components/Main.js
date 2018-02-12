@@ -15,7 +15,7 @@ const TICKET_FILTERS = {
 };
 
 export default class Main extends Component {
-  static propTypes = {
+  propTypes = {
     tickets: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
   };
