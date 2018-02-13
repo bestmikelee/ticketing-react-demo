@@ -1,18 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import App from "./App";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ViewTickets from "./ViewTickets";
+import EditTicket from "./EditTicket";
+import NewTicket from "./NewTicket";
+import NoMatch from "./NoMatch";
 
 const Root = ({ store }) => {
   console.log("Root Store", store);
   return (
     <Provider store={store}>
       <Router>
-        <div>
-          <Route path="/:menuAction?" component={App} />
-          <Route path="/:menuAction/id" component={App} />
-        </div>
+        <Switch>
+          <Route exact path="/" component={ViewTickets} />
+          <Route path="/edit-ticket/:id" component={EditTicket} />
+          <Route path="/new-ticket" component={NewTicket} />
+          <Route component={NoMatch} />
+        </Switch>
       </Router>
     </Provider>
   );

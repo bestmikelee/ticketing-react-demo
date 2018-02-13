@@ -14,7 +14,7 @@ const TICKET_FILTERS = {
   [SHOW_COMPLETED]: ticket => ticket.closed
 };
 
-export default class Main extends Component {
+export default class TicketList extends Component {
   propTypes = {
     tickets: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
@@ -77,13 +77,11 @@ export default class Main extends Component {
     //        {this.renderToggleAll(completedCount)}
 
     return (
-      <section className="main">
-        <ul className="ticket-list">
-          {filteredTickets.map(ticket => (
-            <TicketDetails key={ticket.id} ticket={ticket} {...actions} />
-          ))}
-        </ul>
-      </section>
+      <ul className="ticket-list">
+        {filteredTickets.map(ticket => (
+          <TicketDetails key={ticket.id} ticket={ticket} {...actions} />
+        ))}
+      </ul>
     );
   }
 }

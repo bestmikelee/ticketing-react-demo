@@ -2,12 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Main from "../components/Main";
 import Menu from "../components/Menu";
 import * as TicketActions from "../actions";
 
-const App = ({ tickets, actions, currentTicket, match: { params } }) => {
-  console.log("app props", params);
+const NoMatch = ({ tickets, actions, currentTicket, match: { params } }) => {
+  console.log("NoMatch props", params);
   return (
     <div>
       <Menu
@@ -15,12 +14,12 @@ const App = ({ tickets, actions, currentTicket, match: { params } }) => {
         activeCount={tickets.filter(t => !t.closed).length}
         menuState={params.menuAction}
       />
-      <Main tickets={tickets} actions={actions} />
+      <div>404 - Not Found</div>
     </div>
   );
 };
 
-App.propTypes = {
+NoMatch.propTypes = {
   tickets: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
@@ -34,4 +33,4 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(TicketActions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(NoMatch);
