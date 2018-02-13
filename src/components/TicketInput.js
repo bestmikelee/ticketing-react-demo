@@ -1,31 +1,43 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import Input, { InputLabel } from "material-ui/Input";
+import Button from "material-ui/Button";
+import Typography from "material-ui/Typography";
+import Paper from "material-ui/Paper";
+import { FormControl } from "material-ui/Form";
+import { withStyles } from "material-ui/styles";
+import { Link } from "react-router-dom";
 
-export default class TicketInput extends Component {
-  propTypes = {
+const styles = theme => ({
+  container: {
+    width: "80%",
+    margin: "auto"
+  },
+  input: {
+    margin: theme.spacing.unit
+  },
+  paper: {
+    paddingTop: 16,
+    paddingBottom: 16,
+    marginTop: theme.spacing.unit * 3
+  },
+  formControl: {
+    display: "grid",
+    margin: theme.spacing.unit
+  }
+});
+
+class TicketInput extends Component {
+  static propTypes = {
     onSave: PropTypes.func.isRequired,
-    body: PropTypes.string,
-    subject: PropTypes.string,
-    replies: PropTypes.array,
-    placeholder: PropTypes.string,
-    editing: PropTypes.bool,
-    newTicket: PropTypes.bool,
-    submitted: PropTypes.number
+    nextId: PropTypes.number.isRequired,
+    classes: PropTypes.object.isRequired
   };
   state = {
     body: this.props.body || "",
-    subject: this.props.subject || ""
-  };
-
-  handleSubmit = e => {
-    const body = e.target.value.trim();
-    if (e.which === 13) {
-      this.props.onSave(body);
-      if (this.props.newTicket) {
-        this.setState({ body: "", subject: "", replies: [] });
-      }
-    }
+    subject: this.props.subject || "",
+    id: this.props.nextId
   };
 
   handleSubjectChange = e => {
@@ -36,38 +48,60 @@ export default class TicketInput extends Component {
     this.setState({ body: e.target.value });
   };
 
-  handleBlur = e => {
-    if (!this.props.newTicket) {
-      this.props.onSave(e.target.value);
-    }
-  };
-
   handleButtonClick = () => {
-    // save state of current input and place into list of tickets
+    this.props.onSave(this.state.id, this.state.subject, this.state.body);
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        <input
-          className={classnames({
-            edit: this.props.editing,
-            "new-todo": this.props.newTicket
-          })}
-          type="text"
-          placeholder={this.props.placeholder}
-          autoFocus="true"
-          value={this.state.subject}
-          onBlur={this.handleBlur}
-          onChange={this.handleSubjectChange}
-        />
-        <textarea
-          type="text"
-          value={this.state.body}
-          onChange={this.handleSubjectChange}
-        />
-        <input type="button" onClick={this.handleButtonClick} />
+      <div className={classes.container}>
+        <Paper className={classes.paper} elevation={4}>
+          <Typography
+            variant="headline"
+            component="h3"
+            className={classes.formControl}
+          >
+            Submit a New Ticket
+          </Typography>
+          <FormControl fullWidth className={classes.formControl}>
+            <InputLabel>Subject</InputLabel>
+            <Input
+              placeholder="Title for your post"
+              className={classes.input}
+              inputProps={{
+                "aria-label": "Description"
+              }}
+              onChange={this.handleSubjectChange}
+            />
+          </FormControl>
+          <FormControl fullWidth className={classes.formControl}>
+            <InputLabel>Body</InputLabel>
+            <Input
+              multiline={true}
+              placeholder="Explain"
+              className={classes.input}
+              inputProps={{
+                "aria-label": "Description"
+              }}
+              onChange={this.handleBodyChange}
+            />
+          </FormControl>
+          <Button
+            to="/"
+            component={Link}
+            onClick={this.handleButtonClick}
+            disabled={!(this.state.body && this.state.subject)}
+            className={classes.input}
+            variant="raised"
+            color="primary"
+          >
+            Submit
+          </Button>
+        </Paper>
       </div>
     );
   }
 }
+
+export default withStyles(styles)(TicketInput);

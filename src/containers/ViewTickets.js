@@ -15,12 +15,8 @@ const ViewTickets = ({
   console.log("ViewTickets props", params);
   return (
     <div>
-      <Menu
-        completedCount={tickets.filter(t => t.closed).length}
-        activeCount={tickets.filter(t => !t.closed).length}
-        menuState={params.menuAction}
-      />
-      <TicketList tickets={tickets} actions={actions} />
+      <Menu menuState={params.menuAction} />
+      <TicketList tickets={tickets} />
     </div>
   );
 };

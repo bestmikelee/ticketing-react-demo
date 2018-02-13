@@ -3,16 +3,21 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Menu from "../components/Menu";
+import TicketDetails from "../components/TicketDetails";
+
 import * as TicketActions from "../actions";
 
 const EditTicket = ({ tickets, actions, currentTicket, match: { params } }) => {
   console.log("EditTicket props", params);
   return (
     <div>
-      <Menu
-        completedCount={tickets.filter(t => t.closed).length}
-        activeCount={tickets.filter(t => !t.closed).length}
-        menuState={params.menuAction}
+      <Menu menuState={params.menuAction} />
+      <TicketDetails
+        editTicket={actions.editTicket}
+        deleteTicket={actions.deleteTicket}
+        closeTicket={actions.closeTicket}
+        replyTicket={actions.replyTicket}
+        ticket={tickets.filter(t => t.id === Number(params.id))[0]}
       />
     </div>
   );

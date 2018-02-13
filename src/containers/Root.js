@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ViewTickets from "./ViewTickets";
-import EditTicket from "./EditTicket";
+import SelectTicket from "./SelectTicket";
 import NewTicket from "./NewTicket";
 import NoMatch from "./NoMatch";
 
@@ -14,7 +14,7 @@ const Root = ({ store }) => {
       <Router>
         <Switch>
           <Route exact path="/" component={ViewTickets} />
-          <Route path="/edit-ticket/:id" component={EditTicket} />
+          <Route path="/ticket/:id?" component={SelectTicket} />
           <Route path="/new-ticket" component={NewTicket} />
           <Route component={NoMatch} />
         </Switch>

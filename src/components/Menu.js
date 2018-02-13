@@ -24,8 +24,6 @@ const styles = {
 
 class Menu extends Component {
   static propTypes = {
-    completedCount: PropTypes.number.isRequired,
-    activeCount: PropTypes.number.isRequired,
     filter: PropTypes.string,
     classes: PropTypes.object,
     menuState: PropTypes.string

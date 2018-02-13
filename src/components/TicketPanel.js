@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import ExpansionPanel, {
   ExpansionPanelDetails,
-  ExpansionPanelSummary
+  ExpansionPanelSummary,
+  ExpansionPanelActions
 } from "material-ui/ExpansionPanel";
+import Button from "material-ui/Button";
 import Typography from "material-ui/Typography";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 
@@ -29,12 +31,12 @@ class ControlledExpansionPanels extends Component {
   };
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    key: PropTypes.number.isRequired,
     subject: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     lastReply: PropTypes.number.isRequired,
     replyCount: PropTypes.number.isRequired,
-    editFunc: PropTypes.func.isRequired
+    submitted: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired
   };
 
   handleChange = panel => (event, expanded) => {
@@ -42,37 +44,53 @@ class ControlledExpansionPanels extends Component {
       expanded: expanded ? panel : false
     });
   };
-
+  //<NavLink
+  //   to={`/edit-ticket/${this.props.id}`}
+  //   activeStyle={{
+  //     textDecoration: "none"
+  //   }}
+  // >
   render() {
-    const {
-      classes,
-      key,
-      subject,
-      body,
-      lastReply,
-      replyCount,
-      editFunc
-    } = this.props;
+    const { classes } = this.props;
     const { expanded } = this.state;
 
     return (
-      <ExpansionPanel
-        expanded={expanded === key}
-        onChange={this.handleChange(key)}
-      >
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>General settings</Typography>
-          <Typography className={classes.secondaryHeading}>
-            I am an expansion panel
-          </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat.
-            Aliquam eget maximus est, id dignissim quam.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+      <div className={classes.root}>
+        <ExpansionPanel
+          expanded={expanded === this.props.id}
+          onChange={this.handleChange(this.props.id)}
+        >
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography className={classes.heading}>
+              {new Date(this.props.submitted).toLocaleString()}
+            </Typography>
+            <Typography className={classes.secondaryHeading}>
+              {this.props.subject}
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.details}>
+            <div className={classes.column}>
+              <Typography>{this.props.body}</Typography>
+            </div>
+          </ExpansionPanelDetails>
+          <ExpansionPanelActions>
+            <div className={classes.column}>
+              {this.props.lastReply ? (
+                <Typography>Last Reply: {this.props.lastReply}</Typography>
+              ) : (
+                <div />
+              )}
+            </div>
+            <Button
+              size="small"
+              color="primary"
+              href={`/ticket/${this.props.id}`}
+            >
+              View
+            </Button>
+          </ExpansionPanelActions>
+        </ExpansionPanel>
+      </div>
     );
   }
 }
