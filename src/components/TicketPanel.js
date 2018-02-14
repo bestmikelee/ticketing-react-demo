@@ -44,12 +44,7 @@ class ControlledExpansionPanels extends Component {
       expanded: expanded ? panel : false
     });
   };
-  //<NavLink
-  //   to={`/edit-ticket/${this.props.id}`}
-  //   activeStyle={{
-  //     textDecoration: "none"
-  //   }}
-  // >
+
   render() {
     const { classes } = this.props;
     const { expanded } = this.state;
