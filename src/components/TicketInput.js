@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import Input, { InputLabel } from "material-ui/Input";
 import Button from "material-ui/Button";
 import Typography from "material-ui/Typography";

@@ -16,12 +16,14 @@ const styles = theme => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    flexBasis: "33.33%",
+    flexBasis: "30%",
     flexShrink: 0
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    flexBasis: "25%",
+    flexShrink: 0
   }
 });
 
@@ -36,6 +38,7 @@ class ControlledExpansionPanels extends Component {
     lastReply: PropTypes.number.isRequired,
     replyCount: PropTypes.number.isRequired,
     submitted: PropTypes.number.isRequired,
+    closed: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired
   };
 
@@ -56,11 +59,18 @@ class ControlledExpansionPanels extends Component {
           onChange={this.handleChange(this.props.id)}
         >
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography className={classes.secondaryHeading}>
+              ID: {this.props.id}
+            </Typography>
             <Typography className={classes.heading}>
+              {this.props.subject}
+            </Typography>
+            <Typography className={classes.secondaryHeading}>
+              Date/Time Submitted:{" "}
               {new Date(this.props.submitted).toLocaleString()}
             </Typography>
             <Typography className={classes.secondaryHeading}>
-              {this.props.subject}
+              Status: {this.props.closed ? "Closed" : "Open"}
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.details}>

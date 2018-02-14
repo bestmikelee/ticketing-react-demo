@@ -4,7 +4,8 @@ import {
   EDIT_TICKET,
   CLOSE_TICKET,
   PICK_TICKET,
-  REPLY_TICKET
+  REPLY_TICKET,
+  OPEN_TICKET
 } from "../constants/ActionTypes";
 
 const initialState = {
@@ -90,9 +91,15 @@ export default function tickets(state = initialState, action) {
         ...state,
         tickets: state.tickets.map(
           ticket =>
-            ticket.id === action.id
-              ? { ...ticket, closed: !ticket.closed }
-              : ticket
+            ticket.id === action.id ? { ...ticket, closed: true } : ticket
+        )
+      };
+    case OPEN_TICKET:
+      return {
+        ...state,
+        tickets: state.tickets.map(
+          ticket =>
+            ticket.id === action.id ? { ...ticket, closed: false } : ticket
         )
       };
 

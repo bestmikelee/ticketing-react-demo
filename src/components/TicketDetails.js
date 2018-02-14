@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
-import Input, { InputLabel } from "material-ui/Input";
 import Button from "material-ui/Button";
 import Typography from "material-ui/Typography";
 import Paper from "material-ui/Paper";
-import { FormControl } from "material-ui/Form";
 import { withStyles } from "material-ui/styles";
 import List from "material-ui/List";
 import ReplyList from "./ReplyList";
@@ -30,7 +27,7 @@ const styles = theme => ({
     margin: theme.spacing.unit
   },
   actions: {
-    margin: "auto"
+    marginLeft: "25px"
   }
 });
 
@@ -40,7 +37,8 @@ class TicketDetails extends Component {
     editTicket: PropTypes.func.isRequired,
     deleteTicket: PropTypes.func.isRequired,
     closeTicket: PropTypes.func.isRequired,
-    replyTicket: PropTypes.func.isRequired
+    replyTicket: PropTypes.func.isRequired,
+    openTicket: PropTypes.func.isRequired
   };
 
   state = {
@@ -55,6 +53,7 @@ class TicketDetails extends Component {
     const {
       ticket,
       closeTicket,
+      openTicket,
       deleteTicket,
       replyTicket,
       classes
@@ -85,22 +84,51 @@ class TicketDetails extends Component {
       <div className={classes.container}>
         <Paper className={classes.paper} elevation={4}>
           <Typography variant="headline" component="h4">
+            {ticket.closed ? "CLOSED - " : ""}
             {ticket.subject}
           </Typography>
           <Typography>{ticket.body}</Typography>
+          {ticket.closed ? (
+            <Button
+              className="actions"
+              onClick={() => openTicket(ticket.id)}
+              variant="raised"
+              color="primary"
+              size="small"
+            >
+              Open
+            </Button>
+          ) : (
+            <Button
+              className="actions"
+              onClick={() => closeTicket(ticket.id)}
+              variant="raised"
+              color="secondary"
+              size="small"
+            >
+              Close
+            </Button>
+          )}
           <Button
             to="/"
             component={Link}
-            className="actions"
+            style={{
+              marginLeft: "80%"
+            }}
             onClick={() => deleteTicket(ticket.id)}
             variant="raised"
             color="secondary"
             size="small"
           >
-            Close
+            Delete
           </Button>
         </Paper>
-        <ReplyInput ticketId={ticket.id} saveReply={replyTicket} />
+        {ticket.closed ? (
+          ""
+        ) : (
+          <ReplyInput ticketId={ticket.id} saveReply={replyTicket} />
+        )}
+
         <List dense={true}>{getReplies(ticket)}</List>
       </div>
     );

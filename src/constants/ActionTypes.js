@@ -4,3 +4,4 @@ export const EDIT_TICKET = "edit-ticket";
 export const CLOSE_TICKET = "close-ticket";
 export const PICK_TICKET = "sel-ticket";
 export const REPLY_TICKET = "repl-ticket";
+export const OPEN_TICKET = "open-ticket";

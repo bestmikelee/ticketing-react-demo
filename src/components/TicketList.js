@@ -27,6 +27,7 @@ export default class TicketList extends Component {
               replyCount={ticket.replies.length}
               submitted={ticket.submitted}
               id={ticket.id}
+              closed={!!ticket.closed}
               lastReply={latestReplyInMS}
             />
           );

@@ -14,7 +14,7 @@ export const editTicket = (id, subject, body) => ({
   body
 });
 export const closeTicket = id => ({ type: types.CLOSE_TICKET, id });
-
+export const openTicket = id => ({ type: types.OPEN_TICKET, id });
 export const replyTicket = ({ id, body, user, submitted }) => ({
   type: types.REPLY_TICKET,
   id,

@@ -16,6 +16,7 @@ const EditTicket = ({ tickets, actions, currentTicket, match: { params } }) => {
         editTicket={actions.editTicket}
         deleteTicket={actions.deleteTicket}
         closeTicket={actions.closeTicket}
+        openTicket={actions.openTicket}
         replyTicket={actions.replyTicket}
         ticket={tickets.filter(t => t.id === Number(params.id))[0]}
       />
