@@ -15,10 +15,11 @@ to submit a request. Just keep the system open so anyone can use it.
 
 1. Create the front end with React and any other tools you feel the need to use
 2. Use some kind of data store to store the tickets/replies. We don’t care which you choose to use.
-3. Bonus: Unit Test the code if possible
-4. Bonus: Use static type checking where possible
+3. Bonus: Unit Test the code if possible (WIP)
+4. Bonus: Use static type checking where possible (WIP)
 
 ### Pages
+
 1. The first page should be a ticket listing page. The user who comes to the website will see a listing of
    tickets with a ticket id, a topic, a last response time, and a status (resolved, open). The user should be
    able to submit a new ticket via a link/button from this page. Feel free to add any other pieces of
