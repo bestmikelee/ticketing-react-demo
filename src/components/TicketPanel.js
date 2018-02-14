@@ -6,6 +6,7 @@ import ExpansionPanel, {
   ExpansionPanelSummary,
   ExpansionPanelActions
 } from "material-ui/ExpansionPanel";
+import { Link } from "react-router-dom";
 import Button from "material-ui/Button";
 import Typography from "material-ui/Typography";
 import ExpandMoreIcon from "material-ui-icons/ExpandMore";
@@ -91,7 +92,8 @@ class ControlledExpansionPanels extends Component {
             <Button
               size="small"
               color="primary"
-              href={`/ticketing-react-demo/${this.props.id}`}
+              to={`/ticketing-react-demo/${this.props.id}`}
+              component={Link}
             >
               View
             </Button>
