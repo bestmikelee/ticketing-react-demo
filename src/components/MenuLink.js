@@ -5,7 +5,7 @@ import Button from "material-ui/Button";
 const MenuLink = ({ menuItem, menuState, children }) => {
   if (menuState !== ADD_TICKET) {
     return (
-      <Link to={`/${menuItem}`}>
+      <Link to={`/ticketing-react-demo/${menuItem}`}>
         <Button variant="raised" color="primary">
           New Ticket
         </Button>
@@ -13,7 +13,7 @@ const MenuLink = ({ menuItem, menuState, children }) => {
     );
   } else {
     return (
-      <Link to={"/"}>
+      <Link to={"/ticketing-react-demo/"}>
         <Button variant="raised" color="primary">
           Cancel
         </Button>

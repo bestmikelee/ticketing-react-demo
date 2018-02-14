@@ -110,7 +110,7 @@ class TicketDetails extends Component {
             </Button>
           )}
           <Button
-            to="/"
+            to="/ticketing-react-demo/"
             component={Link}
             style={{
               marginLeft: "80%"

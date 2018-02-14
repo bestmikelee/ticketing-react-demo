@@ -13,9 +13,13 @@ const Root = ({ store }) => {
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route exact path="/" component={ViewTickets} />
-          <Route path="/ticket/:id?" component={SelectTicket} />
-          <Route path="/new-ticket" component={NewTicket} />
+          <Route exact path="/ticketing-react-demo/" component={ViewTickets} />
+
+          <Route
+            path="/ticketing-react-demo/new-ticket"
+            component={NewTicket}
+          />
+          <Route path="/ticketing-react-demo/:id?" component={SelectTicket} />
           <Route component={NoMatch} />
         </Switch>
       </Router>

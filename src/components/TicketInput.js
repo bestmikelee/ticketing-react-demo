@@ -87,7 +87,7 @@ class TicketInput extends Component {
             />
           </FormControl>
           <Button
-            to="/"
+            to="/ticketing-react-demo/"
             component={Link}
             onClick={this.handleButtonClick}
             disabled={!(this.state.body && this.state.subject)}

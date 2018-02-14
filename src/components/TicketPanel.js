@@ -91,7 +91,7 @@ class ControlledExpansionPanels extends Component {
             <Button
               size="small"
               color="primary"
-              href={`/ticket/${this.props.id}`}
+              href={`/ticketing-react-demo/${this.props.id}`}
             >
               View
             </Button>
