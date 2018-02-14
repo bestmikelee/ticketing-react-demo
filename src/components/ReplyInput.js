@@ -37,14 +37,14 @@ class ReplyInput extends Component {
   };
 
   handleNameChange = e => {
-    this.setState({ user: e.target.value });
+    const time = new Date();
+    this.setState({ user: e.target.value, submitted: time.getTime() });
   };
   handleBodyChange = e => {
-    this.setState({ body: e.target.value });
+    const time = new Date();
+    this.setState({ body: e.target.value, submitted: time.getTime() });
   };
   onSave = () => {
-    const time = Date.now();
-    this.setState({ submitted: time });
     this.props.saveReply({
       ...this.state,
       id: this.props.ticketId

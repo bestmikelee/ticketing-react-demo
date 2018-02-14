@@ -76,7 +76,9 @@ class ControlledExpansionPanels extends Component {
           <ExpansionPanelActions>
             <div className={classes.column}>
               {this.props.lastReply ? (
-                <Typography>Last Reply: {this.props.lastReply}</Typography>
+                <Typography>
+                  Last Reply: {new Date(this.props.lastReply).toLocaleString()}
+                </Typography>
               ) : (
                 <div />
               )}

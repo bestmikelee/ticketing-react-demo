@@ -10,6 +10,7 @@ import { withStyles } from "material-ui/styles";
 import List from "material-ui/List";
 import ReplyList from "./ReplyList";
 import ReplyInput from "./ReplyInput";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   container: {
@@ -59,16 +60,27 @@ class TicketDetails extends Component {
       classes
     } = this.props;
     const getReplies = ticket =>
-      ticket.replies.map((reply, i) => {
-        return (
-          <ReplyList
-            user={reply.user}
-            body={reply.body}
-            submitted={reply.submitted}
-            key={i}
-          />
-        );
-      });
+      ticket.replies
+        .sort((a, b) => {
+          // sort in descending order by time
+          if (a.submitted < b.submitted) {
+            return 1;
+          }
+          if (a.submitted > b.submitted) {
+            return -1;
+          }
+          return 0;
+        })
+        .map((reply, i) => {
+          return (
+            <ReplyList
+              user={reply.user}
+              body={reply.body}
+              submitted={reply.submitted}
+              key={i}
+            />
+          );
+        });
     return (
       <div className={classes.container}>
         <Paper className={classes.paper} elevation={4}>
@@ -77,15 +89,8 @@ class TicketDetails extends Component {
           </Typography>
           <Typography>{ticket.body}</Typography>
           <Button
-            className="actions"
-            onClick={() => deleteTicket(ticket.id)}
-            variant="raised"
-            color="primary"
-            size="small"
-          >
-            Reply
-          </Button>
-          <Button
+            to="/"
+            component={Link}
             className="actions"
             onClick={() => deleteTicket(ticket.id)}
             variant="raised"
